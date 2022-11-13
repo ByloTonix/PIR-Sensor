@@ -13,11 +13,32 @@ wait
 apt upgrade -y
 wait
 
-echo "Install needed packages"
-sudo apt install unclutter -y
+echo "Installing needed packages"
+apt install unclutter -y
+apt install ffmpeg libmariadb3 libpq5 libmicrohttpd12 -y
+
+echo "Installing MotionEye "
+wget https://github.com/Motion-Project/motion/releases/download/release-4.3.2/pi_buster_motion_4.3.2-1_armhf.deb 
+dpkg -i pi_buster_motion_4.3.2-1_armhf.deb
+systemctl stop motion
+systemctl disable motion
+apt install python2 python-dev-is-python2 -y
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
+python2 get-pip.py
+apt install libssl-dev libcurl4-openssl-dev libjpeg-dev zlib1g-dev -y
+apt install python-pil -y
+pip2 install motioneye
+mkdir -p /etc/motioneye
+cp /usr/local/share/motioneye/extra/motioneye.conf.sample /etc/motioneye/motioneye.conf
+mkdir -p /var/lib/motioneye
+cp /usr/local/share/motioneye/extra/motioneye.systemd-unit-local /etc/systemd/system/motioneye.service
+systemctl daemon-reload
+systemctl enable motioneye
+systemctl start motioneye
 
 echo "Backuping config.txt"
 cp /boot/config.txt /boot/config.txt.bak
+
 echo "Modifying config.txt"
 sed -i 's/dtoverlay=vc4-fkms-v3d/dtoverlay=vc4-kms-v3d/' /boot/config.txt
 sh -c 'echo "over_voltage=6" >> //boot/config.txt'
@@ -25,10 +46,10 @@ sh -c 'echo "arm_freq=2100" >> //boot/config.txt'
 sh -c 'echo "gpu_freq=750" >> //boot/config.txt'
 sh -c 'echo "gpu_mem=256" >> //boot/config.txt'
 
-echo "Autostart"
 echo "Backuping autostart config file"
 cp /etc/xdg/lxsession/LXDE-pi/autostart /etc/xdg/lxsession/LXDE-pi/autostart.bak
 
+echo "Modifying autostart config file"
 sh -c 'echo "@xset s noblank" >> //etc/xdg/lxsession/LXDE-pi/autostart'
 sh -c 'echo "@xset s off" >> //etc/xdg/lxsession/LXDE-pi/autostart'
 sh -c 'echo "@xset -dpms" >> //etc/xdg/lxsession/LXDE-pi/autostart'
