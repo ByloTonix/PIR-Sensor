@@ -26,13 +26,16 @@ sh -c 'echo "gpu_freq=750" >> //boot/config.txt'
 sh -c 'echo "gpu_mem=256" >> //boot/config.txt'
 
 echo "Autostart"
-sh -c 'echo "@xset s noblank" >> /etc/xdg/lxsession/LXDE-pi/autostart'
-sh -c 'echo "@xset s off" >> /etc/xdg/lxsession/LXDE-pi/autostart'
-sh -c 'echo "@xset -dpms" >> /etc/xdg/lxsession/LXDE-pi/autostart'
-sh -c 'echo "@unclutter -idle 0.5 -root &" >> /etc/xdg/lxsession/LXDE-pi/autostart'
-sh -c 'echo "@sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' /home/pi/.config/chromium/Default/Preferences" >> /etc/xdg/lxsession/LXDE-pi/autostart'
-sh -c 'echo "@sed -i 's/"exit_type":"Crashed"/"exit_type":"Normal"/' /home/pi/.config/chromium/Default/Preferences" >> /etc/xdg/lxsession/LXDE-pi/autostart'
-sh -c 'echo "@chromium-browser --noerrdialogs --disable-infobars --kiosk https://www.ya.ru &" >> /etc/xdg/lxsession/LXDE-pi/autostart'
-sh -c 'echo "@python3 /home/vova/PIR-Sensor/pir.py &" >> /etc/xdg/lxsession/LXDE-pi/autostart'
+echo "Backuping autostart config file"
+cp /etc/xdg/lxsession/LXDE-pi/autostart /etc/xdg/lxsession/LXDE-pi/autostart.bak
+
+sh -c 'echo "@xset s noblank" >> //etc/xdg/lxsession/LXDE-pi/autostart'
+sh -c 'echo "@xset s off" >> //etc/xdg/lxsession/LXDE-pi/autostart'
+sh -c 'echo "@xset -dpms" >> //etc/xdg/lxsession/LXDE-pi/autostart'
+sh -c 'echo "@unclutter -idle 0.5 -root &" >> //etc/xdg/lxsession/LXDE-pi/autostart'
+sh -c 'echo "@sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' /home/pi/.config/chromium/Default/Preferences" >> //etc/xdg/lxsession/LXDE-pi/autostart'
+sh -c 'echo "@sed -i 's/"exit_type":"Crashed"/"exit_type":"Normal"/' /home/pi/.config/chromium/Default/Preferences" >> //etc/xdg/lxsession/LXDE-pi/autostart'
+sh -c 'echo "@chromium-browser --noerrdialogs --disable-infobars --kiosk https://www.ya.ru &" >> //etc/xdg/lxsession/LXDE-pi/autostart'
+sh -c 'echo "@python3 /home/vova/PIR-Sensor/pir.py &" >> //etc/xdg/lxsession/LXDE-pi/autostart'
 
 echo "Done"
