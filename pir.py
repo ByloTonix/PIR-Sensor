@@ -4,7 +4,7 @@ import RPi.GPIO as gpio
 from subprocess import call
  
 gpio.setmode(gpio.BOARD)
-poweroff_delay = 60
+poweroff_delay = 10
 check_delay = 0.85
 pir_pin = 11
  
