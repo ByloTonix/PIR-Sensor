@@ -15,36 +15,37 @@ def main():
  
     while True:
         if gpio.input(pir_pin) == 1:
-            print('Датчик зафиксировал движение...')
+            # print('Датчик зафиксировал движение...')
             last_motion_time = time.time()
             sys.stdout.flush()
             if isDisabled == True:
-                print('Попытка включения экрана...')
+                # print('Попытка включения экрана...')
                 isDisabled = False
                 turn_on()
             else:
-                print('Экран был включен, ничего не меняю')
+                # print('Экран был включен, ничего не меняю')
                 pass
         else:
             if time.time() > (last_motion_time + poweroff_delay):
-                print('Наступил момент выключения экрана. Попытка выключения...')
+                # print('Наступил момент выключения экрана. Попытка выключения...')
                 if isDisabled == False:
                     isDisabled = True
                     turn_off()
                 else:
-                    print('Экран был выключен, ничего не меняю')
+                    # print('Экран был выключен, ничего не меняю')
+                    pass
             else:
-                print('Время ещё не настало, осталось ', (last_motion_time + poweroff_delay) - time.time())
+                # print('Время ещё не настало, осталось ', (last_motion_time + poweroff_delay) - time.time())
                 pass
         time.sleep(check_delay)
  
 def turn_on():
     subprocess.call('sudo vcgencmd display_power 1', shell=True)
-    print('Экран включен')
+    # print('Экран включен')
     
 def turn_off():
     subprocess.call('sudo vcgencmd display_power 0', shell=True)
-    print('Экран выключен')
+    # print('Экран выключен')
  
 if __name__ == '__main__':
     turn_on()
