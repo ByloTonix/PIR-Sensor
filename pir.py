@@ -27,5 +27,5 @@ def main():
         sleep(check_delay)
  
 if __name__ == '__main__':
-    subprocess.call('sudo vcgencmd display_power 1', shell=True)
+    call('sudo vcgencmd display_power 1', shell=True)
     main()
