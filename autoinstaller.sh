@@ -14,7 +14,6 @@ apt upgrade -y
 wait
 
 echo "Install needed packages"
-git clone https://github.com/MatroCholo/PIR-Sensor
 sudo apt install unclutter -y
 
 echo "Backuping config.txt"
