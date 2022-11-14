@@ -40,6 +40,7 @@ cp /boot/config.txt /boot/config.txt.bak
 
 echo "Modifying config.txt"
 sed -i 's/dtoverlay=vc4-kms-v3d/dtoverlay=vc4-fkms-v3d/' /boot/config.txt
+sed -i 's/arm_boost=1/# arm_boost=1/' /boot/config.txt
 sh -c 'echo "over_voltage=6" >> //boot/config.txt'
 sh -c 'echo "arm_freq=2100" >> //boot/config.txt'
 sh -c 'echo "gpu_freq=750" >> //boot/config.txt'
