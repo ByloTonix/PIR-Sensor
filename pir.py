@@ -9,7 +9,7 @@ check_delay = 0.85
 pir_pin = 11
  
 def main():
-    gpio.setup(pir_pin, gpio.IN)
+    gpio.setup(pir_pin, gpio.IN, pull_up_down = gpio.PUD_DOWN)
     isDisabled = False
     last_motion_time = time()
  
