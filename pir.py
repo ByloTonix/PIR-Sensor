@@ -4,8 +4,8 @@ import RPi.GPIO as gpio
 from subprocess import call
  
 gpio.setmode(gpio.BOARD)
-poweroff_delay = 10
-check_delay = 0.85
+poweroff_delay = 5
+check_delay = 1
 pir_pin = 11
  
 def main():
@@ -20,6 +20,7 @@ def main():
             if isDisabled:
                 isDisabled = False
                 call('sudo vcgencmd display_power 1', shell=True)
+                sleep(5)
         else:
             if time() > (last_motion_time + poweroff_delay) and not isDisabled:
                     isDisabled = True
