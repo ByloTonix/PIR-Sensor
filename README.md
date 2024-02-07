@@ -2,7 +2,7 @@
 <h4 align="center">Raspberry Pi Motion Detector is a Python script with which you can use Raspberry Pi and a PIR sensor as a motion detector.</h4>
 
 ## Warnings:
-- Make sure you are using **Raspberry Pi OS Bullseye**. Other versions of Raspberry Pi OS or other Linux distributions have not been **tested** and are **not supported**.
+- Only **Raspberry Pi OS Bullseye** is supported.
 
 ## Requirements:
 - Raspberry Pi
