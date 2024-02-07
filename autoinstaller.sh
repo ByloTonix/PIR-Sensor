@@ -4,24 +4,18 @@ if [ "${UID}" != "0" ]; then
   exit 1
 fi
 
-
 echo "Starting Process"
 echo "Updating Repositories"
-sleep 1
-apt update -y
-wait
-apt upgrade -y
+apt update -y && apt upgrade -y
 wait
 
-echo "Installing needed packages"
-apt install unclutter -y
-apt install ffmpeg libmariadb3 libpq5 libmicrohttpd12 -y
+echo "Installing necessary packages"
+apt install unclutter ffmpeg libmariadb3 libpq5 libmicrohttpd12 -y
 
 echo "Installing MotionEye "
-wget https://github.com/Motion-Project/motion/releases/download/release-4.3.2/pi_buster_motion_4.3.2-1_armhf.deb 
-dpkg -i pi_buster_motion_4.3.2-1_armhf.deb
-systemctl stop motion
-systemctl disable motion
+wget https://github.com/Motion-Project/motion/releases/download/release-4.5.1/pi_buster_motion_4.5.1-1_armhf.deb
+apt install pi_buster_motion_4.5.1-1_armhf.deb
+systemctl stop motion && systemctl disable motion
 apt install python2 python-dev-is-python2 -y
 curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
 python2 get-pip.py
